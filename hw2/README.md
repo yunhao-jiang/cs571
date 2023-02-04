@@ -84,7 +84,7 @@ That's all for your HTML, JS, and CSS code!
 
 This last step requires the use of [Postman](https://www.postman.com/). A 5-digit secret code has been placed at https://cs571.org/s23/hw2/api/test. Use Postman to perform a `GET` request to https://cs571.org/s23/hw2/api/test to reveal the secret 5-digit code. You will need to use your unique bid (found in your email) as a X-CS571-ID header to reveal the secret code. Modify this README.md so that ##### is replaced by the secret code.
 
-**5-Digit Secret Code:** #####
+**5-Digit Secret Code:** 12345
 
 *If you did not recieve a unique ID, contact me no later than Monday at noon.*
 

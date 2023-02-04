@@ -58,12 +58,25 @@ function roundMoney(num) {
 
 function calculateSubtotal() {
 	const bagelQuantity = parseInt(document.getElementById("bagelQuantity").value);
-	// ... you do the rest!
-	// don't forget to return the sum you calculate!
+	const bagelPrice = 1.50;
+	const donutQuantity = parseInt(document.getElementById("donutQuantity").value);
+	const donutPrice = 1.00;
+	const muffinQuantity = parseInt(document.getElementById("muffinQuantity").value);
+	const muffinPrice = 2.00;
+	const pieQuantity = parseInt(document.getElementById("pieQuantity").value);
+	const piePrice = 4.50;
+	const cakeQuantity = parseInt(document.getElementById("cakeQuantity").value);
+	const cakePrice = 7.00;
+
+	return bagelPrice * bagelQuantity + donutPrice * donutQuantity + muffinPrice * muffinQuantity + piePrice * pieQuantity + cakePrice * cakeQuantity
 }
 
 function calculateSalesTax() {
 	// don't forget to use the SALES_TAX object and roundMoney function!
+	const userState = document.getElementById("stateTax").value;
+	const stateTax = SALES_TAX[userState]
+
+	return roundMoney(calculateSubtotal()*stateTax)
 	// don't forget to return the tax you calculate!
 }
 
@@ -73,6 +86,10 @@ document.getElementById("btnSubtotal").addEventListener("click", () => {
 
 document.getElementById("btnSalesTax").addEventListener("click", () => {
 	alert("Your sales tax is: $" + calculateSalesTax());
+});
+
+document.getElementById("btnCheckout").addEventListener("click", () => {
+	alert("Your total is: $" + (calculateSubtotal() + calculateSalesTax()));
 });
 
 // add an event listener for the checkout button!

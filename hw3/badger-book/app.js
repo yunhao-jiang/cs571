@@ -1,8 +1,8 @@
 loadStudents();
 document.getElementById("search-btn").addEventListener("click", () => {
-    let name = document.getElementById("search-name").value.toLowerCase();
-    let major = document.getElementById("search-major").value.toLowerCase();
-    let interest = document.getElementById("search-interest").value.toLowerCase();
+    let name = document.getElementById("search-name").value.toLowerCase().trim();
+    let major = document.getElementById("search-major").value.toLowerCase().trim();
+    let interest = document.getElementById("search-interest").value.toLowerCase().trim();
     loadStudents(name, major, interest);
 });
 document.getElementById("reset-search-btn").addEventListener("click", () => {

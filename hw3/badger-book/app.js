@@ -23,7 +23,7 @@ function loadStudents(name, major, interest) {
     fetch("https://cs571.org/s23/hw3/api/students", {
         method: "GET",
         headers: {
-            "X-CS571-ID": "bid_7d85b4cff564a5dc11dd"
+            "X-CS571-ID": "bid_00000000000000000000"
         }
     }).then(response => response.json()).then(data => {
 

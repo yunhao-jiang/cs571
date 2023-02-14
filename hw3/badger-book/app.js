@@ -40,13 +40,11 @@ function loadStudents(name, major, interest) {
             curr.push(stud);
             return curr;
         }, []);
-        console.log(result);
         document.getElementById("students").innerHTML = buildStudentsHtml(result);
     });
 }
 
 function nameIncludes(firstName, lastName, toSearch) {
-    console.log("name search running")
     let found = false;
     toSearch.split(" ").every(name => {
         if (firstName.toLowerCase().includes(name) || lastName.toLowerCase().includes(name)) {

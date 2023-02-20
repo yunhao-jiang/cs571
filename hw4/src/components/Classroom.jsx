@@ -80,20 +80,27 @@ const Classroom = () => {
         filterStudents(searchName.trim().toLowerCase(), searchMajor.trim().toLowerCase(), searchInterest.trim().toLowerCase())
     }, [searchName, searchMajor, searchInterest, students])
 
+    function resetSearch() {
+        setSearchName("");
+        setSearchMajor("");
+        setSearchInterest("");
+
+    }
+
 
     return <div>
         <Form>
             <Form.Label htmlFor="searchName">Name</Form.Label>
-            <Form.Control id="searchName"
+            <Form.Control id="searchName" value={searchName}
                           onChange={(e) => setSearchName(e.target.value)}/>
             <Form.Label htmlFor="searchMajor">Major</Form.Label>
-            <Form.Control id="searchMajor"
+            <Form.Control id="searchMajor" value={searchMajor}
                           onChange={(e) => setSearchMajor(e.target.value)}/>
             <Form.Label htmlFor="searchInterest">Interest</Form.Label>
-            <Form.Control id="searchInterest"
+            <Form.Control id="searchInterest" value={searchInterest}
                           onChange={(e) => setSearchInterest(e.target.value)}/>
             <br/>
-            <Button variant="neutral">Reset Search</Button>
+            <Button variant="neutral" onClick={resetSearch}>Reset Search</Button>
         </Form>
         <Container fluid>
             <Row>{

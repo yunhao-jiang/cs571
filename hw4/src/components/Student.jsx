@@ -8,7 +8,7 @@ const Student = (props) => {
         <ul>
         {
             props.interests.map((interest) => {
-                return <li>{interest}</li>
+                return <li key={interest}>{interest}</li>
             })
         }
         </ul>

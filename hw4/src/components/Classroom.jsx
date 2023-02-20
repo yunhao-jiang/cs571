@@ -9,8 +9,6 @@ const Classroom = () => {
     const [searchInterest, setSearchInterest] = useState("");
     const [displayStudents, setDisplayStudents] = useState([]);
 
-    //let displayStudents;
-
     function loadStudents() {
         console.log("loading stu")
         fetch("https://cs571.org/s23/hw4/api/students",

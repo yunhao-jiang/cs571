@@ -14,9 +14,18 @@ const Classroom = () => {
             data.map((student) => {
                     const name = student.name;
                     const studentId = student.id;
-                    // const major = student.major;
-                    // const interests = student.interests;
-                    setStudents(oldStudents => [...oldStudents, {name, studentId}]);
+                    const major = student.major;
+                    const interests = student.interests;
+                    const credits = student.numCredits;
+                    const isWisconsinite = student.fromWisconsin;
+                    setStudents(oldStudents => [...oldStudents, {
+                        name,
+                        major,
+                        interests,
+                        credits,
+                        isWisconsinite,
+                        studentId
+                    }]);
                 }
             )
         });
@@ -42,7 +51,8 @@ const Classroom = () => {
             <Row>{
                 students.map((student) => {
                     return <Col xs={12} sm={6} md={4} lg={3} xl={2} key={student.studentId}>
-                        <Student name={student.name}/>
+                        <Student name={student.name} major={student.major} credit={student.credits}
+                                 wisc={student.isWisconsinite} interests={student.interests}/>
                     </Col>
                 })
             }

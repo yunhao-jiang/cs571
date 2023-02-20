@@ -9,10 +9,7 @@ const Classroom = () => {
     const [searchInterest, setSearchInterest] = useState("");
     const [displayStudents, setDisplayStudents] = useState([]);
 
-    //let displayStudents;
-
     function loadStudents() {
-        console.log("loading stu")
         fetch("https://cs571.org/s23/hw4/api/students",
             {
                 method: "GET",
@@ -43,11 +40,8 @@ const Classroom = () => {
 
     function filterStudents(name, major, interest) {
         setDisplayStudents([]);
-        console.log("filtering")
         students.every((stud) => {
-            //console.log(stud)
             if (name !== "" && !nameIncludes(stud.name.first, stud.name.last, name)) {
-                //console.log("returning: " + stud.name.first + " " + stud.name.last)
                 return true;
             }
             if (major !== "" && !stud.major.toLowerCase().includes(major)) {
@@ -84,7 +78,6 @@ const Classroom = () => {
         setSearchName("");
         setSearchMajor("");
         setSearchInterest("");
-
     }
 
 

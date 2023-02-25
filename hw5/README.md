@@ -70,19 +70,26 @@ The following questions ask about principles of interaction and visual design as
 
 1. Assume that Badger Beats contains thousands of songs. How would you load and display the results in an efficient manner?
 
-INSERT YOUR RESPONSE HERE.
+Load a part of the songs and display them. When the user scrolls down, load more songs and display them. This way, the user can see the results quickly.
 
 2. Assume that Badger Beats contains thousands of songs. How would you help users narrow down their results?
 
-INSERT YOUR RESPONSE HERE.
+- I would add a search bar. When the user types in the search bar, the songs that match the 
+search will be displayed. This way, the user can find the songs they want quickly.
 
 3. What are three aspects of visual design that *you used* in your implementation of Badger Beats?
 
-INSERT YOUR RESPONSE HERE.
+- Layout (have whitespace between the album cover and the card outline)
+- Color (buttons change color at different stages)
+- Typography (the font is easy to read, and the font size is appropriate)
 
 4. What are three aspects of visual design that *could be used* to improve your implementation of Badger Beats?
 
-INSERT YOUR RESPONSE HERE.
+Make each card have the same size
+
+- Make the card have the same size
+- Add whitespace on the left and right of the page
+- Use a different font or font size
 
 ### Done! 🥳
 

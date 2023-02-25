@@ -31,7 +31,7 @@ const AllSongs = (props) => {
             } else {
                 return [...acc, song.genre];
             }
-        }, [])
+        }, []);
         setSummary([songs.length, genres.length, totalDuration])
     }
 
@@ -45,8 +45,8 @@ const AllSongs = (props) => {
 
     return <div>
         <h1>Songs</h1>
-        <h3>We have {summary[0]} songs in {summary[1]} genres for a total of {summary[3]} seconds of
-            music!</h3>
+        <p>We have {summary[0]} songs in {summary[1]} genres for a total of {summary[2]} seconds of
+            music!</p>
         <Container fluid>
             <Row>
                 <BadgerBeatsFavoritesContext.Provider value={[favorites, setFavorites]}>

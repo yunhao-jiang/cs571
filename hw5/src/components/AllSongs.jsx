@@ -29,6 +29,7 @@ const AllSongs = (props) => {
             if (acc.includes(song.genre)) {
                 return acc;
             } else {
+                localStorage.getItem("favStore") === null ? setFavorites({}) : setFavorites(JSON.parse(localStorage.getItem("favStore")));
                 return [...acc, song.genre];
             }
         }, []);

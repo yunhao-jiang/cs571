@@ -7,11 +7,13 @@ const Song = (props) => {
     const addToFavorites = () => {
         // add new song to the dictionary with key as song id and value as song object
         setFavorites(oldFavorites => ({...oldFavorites, [props.song.id]: props.song}));
+        localStorage.setItem("favStore", JSON.stringify({...favorites, [props.song.id]: props.song}));
     }
     const removeFromFavorites = () => {
         const newFavorites = {...favorites};
         delete newFavorites[props.song.id];
         setFavorites(newFavorites);
+        localStorage.setItem("favStore", JSON.stringify(newFavorites));
     }
     return <Card>
         <Card.Body>

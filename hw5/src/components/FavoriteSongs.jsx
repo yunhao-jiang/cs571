@@ -27,9 +27,12 @@ const FavoriteSongs = (props) => {
     }
 
     useEffect(() => {
-        localStorage.getItem("favStore") === null ? setFavorites({}) : setFavorites(JSON.parse(localStorage.getItem("favStore")));
         calculateSummary()
     }, [favorites]);
+
+    useEffect(() => {
+        localStorage.getItem("favStore") === null ? setFavorites({}) : setFavorites(JSON.parse(localStorage.getItem("favStore")));
+    }, []);
 
     return <div>
         <h1>Favorites</h1>

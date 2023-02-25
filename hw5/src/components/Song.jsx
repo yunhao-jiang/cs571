@@ -5,10 +5,13 @@ import {useContext} from "react";
 const Song = (props) => {
     const [favorites, setFavorites] = useContext(BadgerBeatsFavoritesContext);
     const addToFavorites = () => {
-        setFavorites(oldFavorites => [...oldFavorites, props.song.id]);
+        // add new song to the dictionary with key as song id and value as song object
+        setFavorites(oldFavorites => ({...oldFavorites, [props.song.id]: props.song}));
     }
     const removeFromFavorites = () => {
-        setFavorites(oldFavorites => oldFavorites.filter(id => id !== props.song.id));
+        const newFavorites = {...favorites};
+        delete newFavorites[props.song.id];
+        setFavorites(newFavorites);
     }
     return <Card>
         <Card.Body>
@@ -18,7 +21,7 @@ const Song = (props) => {
             <Card.Subtitle>by {props.song.artist}</Card.Subtitle>
             <Card.Text>{props.song.genre} | {props.song.year} | {props.song.length}</Card.Text>
         {
-            favorites.includes(props.song.id) ?
+            props.song.id in favorites ?
                 <Button onClick={removeFromFavorites} variant={"danger"}>Remove from
                     Favorites</Button> :
                 <Button onClick={addToFavorites}>Add to Favorites</Button>

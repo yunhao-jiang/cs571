@@ -1,6 +1,6 @@
 import React from "react";
-import { Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
-import { Link, Outlet } from "react-router-dom";
+import {Container, Nav, Navbar, NavDropdown} from "react-bootstrap";
+import {Link, Outlet} from "react-router-dom";
 
 import crest from '../../assets/uw-crest.svg'
 
@@ -25,7 +25,11 @@ function BadgerLayout(props) {
                         <Nav.Link as={Link} to="register">Register</Nav.Link>
                         <NavDropdown title="Chatrooms">
                             {
-                               /* TODO Display a NavDropdown.Item for each chatroom that sends the user to that chatroom! */
+                                props.chatrooms.map(chatroom => {
+                                    return <NavDropdown.Item as={Link}
+                                                             to={`chatrooms/${chatroom}`}>{chatroom}
+                                    </NavDropdown.Item>
+                                })
                             }
                         </NavDropdown>
 
@@ -33,7 +37,7 @@ function BadgerLayout(props) {
                 </Container>
             </Navbar>
             <div className="body-spacer">
-                <Outlet />
+                <Outlet/>
             </div>
         </div>
     );

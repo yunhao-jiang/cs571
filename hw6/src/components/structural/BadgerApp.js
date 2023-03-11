@@ -16,7 +16,7 @@ function BadgerApp() {
   useEffect(() => {
     fetch('https://cs571.org/s23/hw6/api/chatroom', {
       headers: {
-        "X-CS571-ID": "bid_00000000000000000000",
+        "X-CS571-ID": "bid_7d85b4cff564a5dc11dd",
       }
     }).then(res => res.json()).then(json => {
       setChatrooms(json)

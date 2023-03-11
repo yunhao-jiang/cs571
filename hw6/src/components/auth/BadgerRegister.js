@@ -31,6 +31,7 @@ export default function BadgerRegister() {
         }).then(res => {
             if (res.status === 200) {
                 alert('You have successfully registered!');
+                sessionStorage.setItem("loggedIn", true);
                 navigate('/')
                 return
             }
@@ -38,7 +39,7 @@ export default function BadgerRegister() {
         }).then(json => {
             if (json && json.msg) alert(json.msg);
         })
-    });
+    },[]);
 
         return <>
             <h1>Register</h1>

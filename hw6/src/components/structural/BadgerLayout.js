@@ -26,9 +26,12 @@ function BadgerLayout(props) {
                         <NavDropdown title="Chatrooms">
                             {
                                 props.chatrooms.map(chatroom => {
-                                    return <NavDropdown.Item as={Link}
-                                                             to={`chatrooms/${chatroom}`}>{chatroom}
-                                    </NavDropdown.Item>
+
+                                    return <div key={chatroom}>
+                                        <NavDropdown.Item as={Link}
+                                                          to={`chatrooms/${chatroom}`}>{chatroom}
+                                        </NavDropdown.Item>
+                                    </div>
                                 })
                             }
                         </NavDropdown>
@@ -43,4 +46,4 @@ function BadgerLayout(props) {
     );
 }
 
-export default BadgerLayout;
+    export default BadgerLayout;

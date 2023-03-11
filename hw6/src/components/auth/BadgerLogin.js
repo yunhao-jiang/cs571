@@ -1,9 +1,11 @@
-import React, {useCallback} from 'react';
+import React, {useCallback, useContext} from 'react';
 import {Button, Form} from "react-bootstrap";
 import {useNavigate} from "react-router-dom";
+import LogInStatusContext from "../../contexts/LogInStatusContext";
 
 export default function BadgerLogin() {
     const navigate = useNavigate();
+    const [logInStatus, setLogInStatus] = useContext(LogInStatusContext)
 
     const login = useCallback(()=>{
         const userName = document.getElementById("userName").value;
@@ -24,8 +26,8 @@ export default function BadgerLogin() {
             })
         }).then(res => {
             if (res.status === 200) {
-                alert('You have successfully registered!');
-                sessionStorage.setItem("loggedIn", true);
+                alert('You have successfully logged in!');
+                setLogInStatus(true)
                 navigate('/')
                 return
             }

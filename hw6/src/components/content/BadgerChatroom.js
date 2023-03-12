@@ -21,50 +21,45 @@ export default function BadgerChatroom(props) {
             setMessages(json.messages)
             setLoadStatus(true)
         })
+        console.log("lodaing" + props.name)
     };
 
     const checkUser = () => {
         fetch('https://cs571.org/s23/hw6/api/whoami', {
-            method: "GET",
-            credentials: "include",
-            headers: {
+            method: "GET", credentials: "include", headers: {
                 "X-CS571-ID": "bid_7d85b4cff564a5dc11dd"
             }
         }).then(res => {
-            if(res.ok) {
+            if (res.ok) {
                 return res.json()
             }
         }).then(json => {
             if (json) setCurrentUser(json.user.username)
+            else setCurrentUser('')
         })
     }
 
     useEffect(() => {
         loadMessages()
-    }, [props]);
+    }, [props.name]);
 
-    useEffect(()=>{
+    useEffect(() => {
         checkUser()
-    },[loadStatus])
+    }, [loadStatus,logInStatus])
 
-    setTimeout(loadMessages,5000) // Load all message every minute
+    setTimeout(loadMessages, 60000) // Load all message every minute
 
-    const createPost = () =>{
+    const createPost = () => {
         if (postTitle.length === 0 || postContent.length === 0) {
-            console.log(postTitle.length +" " + postContent.length)
+            console.log(postTitle.length + " " + postContent.length)
             alert("You must provide both a title and content!")
             return
         }
         fetch(`https://cs571.org/s23/hw6/api/chatroom/${props.name}/messages`, {
-            method: 'POST',
-            credentials: "include",
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CS571-ID': 'bid_7d85b4cff564a5dc11dd'
-            },
-            body: JSON.stringify({
-                title: postTitle,
-                content: postContent
+            method: 'POST', credentials: "include", headers: {
+                'Content-Type': 'application/json', 'X-CS571-ID': 'bid_7d85b4cff564a5dc11dd'
+            }, body: JSON.stringify({
+                title: postTitle, content: postContent
             })
         }).then(res => {
             if (res.status === 200) {
@@ -79,11 +74,9 @@ export default function BadgerChatroom(props) {
 
     }
 
-    const deletePost= (id) =>{
+    const deletePost = (id) => {
         fetch(`https://cs571.org/s23/hw6/api/chatroom/${props.name}/messages/${id}`, {
-            method: 'DELETE',
-            credentials: "include",
-            headers: {
+            method: 'DELETE', credentials: "include", headers: {
                 'X-CS571-ID': 'bid_7d85b4cff564a5dc11dd'
             }
         }).then(res => {
@@ -100,20 +93,16 @@ export default function BadgerChatroom(props) {
 
     return <>
         <h1>{props.name} Chatroom</h1>
-        {
-            logInStatus ?
-                <><Form>
-                    <Form.Label htmlFor='post-title'>Post Title</Form.Label>
-                    <Form.Control type='text' id='post-title'
-                                  onChange={(e) => setPostTitle(e.target.value)}/>
-                    <Form.Label htmlFor='post-content'>Post Content</Form.Label>
-                    <Form.Control type='text' id='post-content'
-                                  onChange={(e) => setPostContent(e.target.value)}/>
-                </Form>
-                    <Button onClick={createPost}>Create Post</Button>
-                </> :
-                <p>You must be logged in to post!</p>
-        }
+        {logInStatus ? <><Form>
+            <Form.Label htmlFor='post-title'>Post Title</Form.Label>
+            <Form.Control type='text' id='post-title'
+                          onChange={(e) => setPostTitle(e.target.value)}/>
+            <Form.Label htmlFor='post-content'>Post Content</Form.Label>
+            <Form.Control type='text' id='post-content'
+                          onChange={(e) => setPostContent(e.target.value)}/>
+        </Form>
+            <Button onClick={createPost}>Create Post</Button>
+        </> : <p>You must be logged in to post!</p>}
         <hr/>
         {messages.length > 0 ? <>
             {messages.map((message) => {

@@ -4,7 +4,7 @@ import {Button} from "react-bootstrap";
 function BadgerMessage(props) {
 
     const dt = new Date(props.created);
-    const deletePost = () =>{
+    const deletePost = () => {
         props.deletePost(props.id)
     }
 

@@ -7,7 +7,7 @@ export default function BadgerLogin() {
     const navigate = useNavigate();
     const [logInStatus, setLogInStatus] = useContext(LogInStatusContext)
 
-    const login = useCallback(()=>{
+    const login = useCallback(() => {
         const userName = document.getElementById("userName").value;
         const password = document.getElementById("password").value;
         if (userName.length === 0 || password.length === 0) {
@@ -36,7 +36,7 @@ export default function BadgerLogin() {
         }).then(json => {
             if (json && json.msg) alert(json.msg);
         })
-    },[])
+    }, [])
 
     return <>
         <h1>Login</h1>

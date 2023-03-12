@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
 
 import BadgerLayout from './BadgerLayout';
@@ -23,9 +23,10 @@ function BadgerApp() {
         }).then(res => res.json()).then(json => {
             setChatrooms(json)
         })
+        checkCookie()
     }, []);
 
-    setTimeout(()=>{
+    const checkCookie = () =>{
         fetch("https://cs571.org/s23/hw6/api/whoami",{
             method: "GET",
             credentials: "include",
@@ -33,6 +34,10 @@ function BadgerApp() {
                 "X-CS571-ID": "bid_7d85b4cff564a5dc11dd"
             }
         }).then(res => res.ok? setLogInStatus(true):setLogInStatus(false))
+    }
+
+    setTimeout(()=>{
+        checkCookie()
     },60000)
 
     return (

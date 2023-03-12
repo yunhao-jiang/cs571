@@ -16,6 +16,7 @@ export default function BadgerLogin() {
         }
         fetch('https://www.cs571.org/s23/hw6/api/login', {
             method: 'POST',
+            credentials: "include",
             headers: {
                 'Content-Type': 'application/json',
                 'X-CS571-ID': 'bid_7d85b4cff564a5dc11dd'

@@ -25,6 +25,16 @@ function BadgerApp() {
         })
     }, []);
 
+    setTimeout(()=>{
+        fetch("https://cs571.org/s23/hw6/api/whoami",{
+            method: "GET",
+            credentials: "include",
+            headers:{
+                "X-CS571-ID": "bid_7d85b4cff564a5dc11dd"
+            }
+        }).then(res => res.ok? setLogInStatus(true):setLogInStatus(false))
+    },60000)
+
     return (
 
         <BrowserRouter>

@@ -12,7 +12,6 @@ export default function BadgerLogout() {
             },
             credentials: "include"
         }).then(res => res.json()).then(json => {
-            // Maybe you need to do something here?
             setLoggedIn(false)
         })
     }, []);

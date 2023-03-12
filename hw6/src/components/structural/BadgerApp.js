@@ -41,7 +41,6 @@ function BadgerApp() {
     },60000)
 
     return (
-
         <BrowserRouter>
             <LogInStatusContext.Provider value={[logInStatus, setLogInStatus]}>
                 <Routes>

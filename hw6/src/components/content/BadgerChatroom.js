@@ -1,13 +1,16 @@
-import React, {useCallback, useContext, useEffect, useState} from "react"
+import React, {useContext, useEffect, useState} from "react"
 import LogInStatusContext from "../../contexts/LogInStatusContext";
 import {Button, Form} from "react-bootstrap";
+import BadgerMessage from "./BadgerMessage";
 
 export default function BadgerChatroom(props) {
 
     const [messages, setMessages] = useState([]);
     const [postTitle, setPostTitle] = useState('')
     const [postContent, setPostContent] = useState('')
-    const [logInStatus, setLogInStatus] = useContext(LogInStatusContext)
+    const [logInStatus] = useContext(LogInStatusContext)
+    const [currentUser, setCurrentUser] = useState('')
+    const [loadStatus, setLoadStatus] = useState(false)
 
     const loadMessages = () => {
         fetch(`https://cs571.org/s23/hw6/api/chatroom/${props.name}/messages`, {
@@ -16,19 +19,35 @@ export default function BadgerChatroom(props) {
             }
         }).then(res => res.json()).then(json => {
             setMessages(json.messages)
+            setLoadStatus(true)
         })
     };
+
+    const checkUser = () => {
+        fetch('https://cs571.org/s23/hw6/api/whoami', {
+            method: "GET",
+            credentials: "include",
+            headers: {
+                "X-CS571-ID": "bid_7d85b4cff564a5dc11dd"
+            }
+        }).then(res => {
+            if(res.ok) {
+                return res.json()
+            }
+        }).then(json => {
+            if (json) setCurrentUser(json.user.username)
+        })
+    }
 
     useEffect(() => {
         loadMessages()
     }, [props]);
 
-    setTimeout(loadMessages,5000) // Load all message every 5 seconds
+    useEffect(()=>{
+        checkUser()
+    },[loadStatus])
 
-    const getFullDateString = useCallback((timestamp) => {
-        const date = new Date(timestamp);
-        return date.toLocaleDateString() + " at " + date.toLocaleTimeString()
-    }, [])
+    setTimeout(loadMessages,5000) // Load all message every minute
 
     const createPost = () =>{
         if (postTitle.length === 0 || postContent.length === 0) {
@@ -60,6 +79,25 @@ export default function BadgerChatroom(props) {
 
     }
 
+    const deletePost= (id) =>{
+        fetch(`https://cs571.org/s23/hw6/api/chatroom/${props.name}/messages/${id}`, {
+            method: 'DELETE',
+            credentials: "include",
+            headers: {
+                'X-CS571-ID': 'bid_7d85b4cff564a5dc11dd'
+            }
+        }).then(res => {
+            if (res.status === 200) {
+                alert('Successfully deleted the post!');
+                loadMessages()
+                return
+            }
+            return res.json()
+        }).then(json => {
+            if (json && json.msg) alert(json.msg);
+        })
+    }
+
     return <>
         <h1>{props.name} Chatroom</h1>
         {
@@ -80,10 +118,7 @@ export default function BadgerChatroom(props) {
         {messages.length > 0 ? <>
             {messages.map((message) => {
                 return <div key={message.id}>
-                    <h3>{message.title}</h3>
-                    <p><sub>Posted on {getFullDateString(message.created)}</sub></p>
-                    <i>{message.poster}</i>
-                    <p>{message.content}</p>
+                    <BadgerMessage {...message} deletePost={deletePost} currentUser={currentUser}/>
                 </div>
             })}
         </> : <>

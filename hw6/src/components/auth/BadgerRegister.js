@@ -42,21 +42,21 @@ export default function BadgerRegister() {
         }).then(json => {
             if (json && json.msg) alert(json.msg);
         })
-    },[]);
+    }, []);
 
-        return <>
-            <h1>Register</h1>
-            <Form>
-                <Form.Label htmlFor="userName">Username</Form.Label>
-                <Form.Control type="text" value={userName}
-                              onChange={e => setUserName(e.target.value)}/>
-                <Form.Label htmlFor="password">Password</Form.Label>
-                <Form.Control type="password" value={password1}
-                              onChange={e => setPassword1(e.target.value)}/>
-                <Form.Label htmlFor="passwordRepeat">Repeat Password</Form.Label>
-                <Form.Control type="password" value={password2}
-                              onChange={e => setPassword2(e.target.value)}/>
-            </Form>
-            <Button onClick={register}>Register</Button>
-        </>
-    }
+    return <>
+        <h1>Register</h1>
+        <Form>
+            <Form.Label htmlFor="userName">Username</Form.Label>
+            <Form.Control type="text" value={userName}
+                          onChange={e => setUserName(e.target.value)}/>
+            <Form.Label htmlFor="password">Password</Form.Label>
+            <Form.Control type="password" value={password1}
+                          onChange={e => setPassword1(e.target.value)}/>
+            <Form.Label htmlFor="passwordRepeat">Repeat Password</Form.Label>
+            <Form.Control type="password" value={password2}
+                          onChange={e => setPassword2(e.target.value)}/>
+        </Form>
+        <Button onClick={register}>Register</Button>
+    </>
+}

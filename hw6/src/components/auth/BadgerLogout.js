@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, {useEffect} from 'react';
 import LogInStatusContext from "../../contexts/LogInStatusContext";
 
 export default function BadgerLogout() {

@@ -26,19 +26,19 @@ function BadgerApp() {
         checkCookie()
     }, []);
 
-    const checkCookie = () =>{
-        fetch("https://cs571.org/s23/hw6/api/whoami",{
+    const checkCookie = () => {
+        fetch("https://cs571.org/s23/hw6/api/whoami", {
             method: "GET",
             credentials: "include",
-            headers:{
+            headers: {
                 "X-CS571-ID": "bid_7d85b4cff564a5dc11dd"
             }
-        }).then(res => res.ok? setLogInStatus(true):setLogInStatus(false))
+        }).then(res => res.ok ? setLogInStatus(true) : setLogInStatus(false))
     }
 
-    setTimeout(()=>{
+    setTimeout(() => {
         checkCookie()
-    },60000)
+    }, 60000)
 
     return (
         <BrowserRouter>

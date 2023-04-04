@@ -1,5 +1,5 @@
 import { createContext } from "react";
 
-const BakeryOrderContext = createContext([]);
+const BakeryOrderContext = createContext({});
 
 export default BakeryOrderContext;

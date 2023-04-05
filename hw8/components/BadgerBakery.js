@@ -91,7 +91,7 @@ export default function BadgerBakery() {
             <Button disabled={plusDisabled} onPress={() => setQuantity(quantity + 1)} title="+"/>
         </View>
         <Text style={{alignSelf: 'center'}}>Order Total: ${calcTotal().toFixed(2)}</Text>
-        <Button onPress={submitOrder} title="SUBMIT ORDER" disabled={calcTotal() === 0}/>
+        <Button onPress={submitOrder} title="PLACE ORDER" disabled={calcTotal() === 0}/>
     </View>
 }
 

@@ -10,9 +10,17 @@ export default function BadgerCard(props) {
 
 const styles = StyleSheet.create({
     card: {
-        padding: 16,
+        padding: 10,
         elevation: 5,
         borderRadius: 10,
-        backgroundColor: 'white'
+        backgroundColor: 'white',
+        marginHorizontal: 7,
+        marginVertical: 5,
+        shadowOffset: {
+            width: 3,
+            height: 3,
+        },
+        shadowOpacity: 0.1,
+        shadowRadius: 1,
     }
 })

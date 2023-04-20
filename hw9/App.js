@@ -4,6 +4,9 @@ import { useState } from 'react';
 
 import BadgerPreferencesContext from './contexts/BadgerPreferencesContext';
 import BadgerTabs from './components/navigation/BadgerTabs';
+import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
+import BadgerNewsScreen from "./components/screens/BadgerNewsScreen";
+import BadgerPreferencesScreen from "./components/screens/BadgerPreferencesScreen";
 
 export default function App() {
 
@@ -13,7 +16,7 @@ export default function App() {
     <>
       <BadgerPreferencesContext.Provider value={[prefs, setPrefs]}>
         <NavigationContainer>
-          <BadgerTabs />
+            <BadgerTabs />
         </NavigationContainer>
       </BadgerPreferencesContext.Provider>
       <StatusBar style="auto" />

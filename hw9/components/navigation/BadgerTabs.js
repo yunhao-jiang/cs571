@@ -1,8 +1,15 @@
 import { Text } from "react-native";
+import BadgerNewsScreen from "../screens/BadgerNewsScreen";
+import BadgerPreferencesScreen from "../screens/BadgerPreferencesScreen";
+import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
 
 function BadgerTabs(props) {
+    const BadgerNewsTab = createBottomTabNavigator();
     return <>
-        <Text style={{paddingTop: 128}}>Hello World! I should make this tabs instead.</Text>
+        <BadgerNewsTab.Navigator>
+            <BadgerNewsTab.Screen name={"News"} component={BadgerNewsScreen} options={{title:"Articles"}}/>
+            <BadgerNewsTab.Screen name={"Preferences"} component={BadgerPreferencesScreen} />
+        </BadgerNewsTab.Navigator>
     </>
 }
 

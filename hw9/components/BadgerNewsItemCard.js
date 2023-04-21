@@ -1,10 +1,17 @@
 import React from "react";
 import {Image, Text, StyleSheet, Dimensions} from "react-native";
 import BadgerCard from "./BadgerCard";
+import {useNavigation} from "@react-navigation/native";
 
 function BadgerNewsItemCard(props) {
+
+    const navigation = useNavigation();
+    function handlePress() {
+        navigation.push("NewsDetails", props);
+    }
+
     return <>
-        <BadgerCard>
+        <BadgerCard onPress={handlePress}>
             <Image source={{uri: props.img}} style={styles.image}/>
             <Text style={styles.title}>{props.title}</Text>
         </BadgerCard>
@@ -22,8 +29,11 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: 20,
-        marginTop: 5,
+        marginTop: 8,
         color: '#2a2a2a',
+        fontFamily: 'Avenir Next',
+        fontWeight: '500',
+        lineHeight: 28,
     }
 })
 export default BadgerNewsItemCard;

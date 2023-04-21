@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {ScrollView, Text} from "react-native";
+import {Image, SafeAreaView, ScrollView, Text, View} from "react-native";
 import BadgerNewsItemCard from "../BadgerNewsItemCard";
 
 function BadgerNewsScreen(props) {
@@ -18,12 +18,24 @@ function BadgerNewsScreen(props) {
         })
     }, [])
     return <>
-        <ScrollView style={{backgroundColor: 'gainsboro', paddingTop:7}}>
-        {
-            loaded ? articles.map((article) => {
-                return <BadgerNewsItemCard key={article.id} {...article}/>
-            }) : <Text>Loading...</Text>
-        }
+        <SafeAreaView backgroundColor='white' style={{flexDirection: 'row'}}>
+            <Image
+                source={{uri: 'https://brand.wisc.edu/content/uploads/2016/11/Bucky-Badger-233x300.jpg'}}
+                style={{height: 45, width: 35, marginBottom: 10, marginLeft: 22, marginRight: 10}}/>
+            <Text style={{
+                fontSize: 30,
+                fontWeight: 'bold',
+                marginTop: 13,
+                color: '#423f38',
+                fontStyle: 'italic'
+            }}>Badger News</Text>
+        </SafeAreaView>
+        <ScrollView style={{backgroundColor: 'gainsboro', paddingTop: 7}}>
+            {
+                loaded ? articles.map((article) => {
+                    return <BadgerNewsItemCard key={article.id} {...article}/>
+                }) : <Text>Loading...</Text>
+            }
         </ScrollView>
     </>
 }

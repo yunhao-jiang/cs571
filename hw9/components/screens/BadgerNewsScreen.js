@@ -42,7 +42,7 @@ function BadgerNewsScreen(props) {
                 fontStyle: 'italic'
             }}>Badger News</Text>
         </SafeAreaView>
-        <ScrollView style={{backgroundColor: 'gainsboro', paddingTop: 7}}>
+        <ScrollView style={{paddingTop: 7}}>
             {
                 loaded ? articles.filter((article) => {
                             for (const tag of article.tags) {
@@ -53,7 +53,13 @@ function BadgerNewsScreen(props) {
                             return true
                         }
                     ).map((article) => <BadgerNewsItemCard key={article.id} {...article}/>) :
-                    <Text>Loading...</Text>
+                    <Text style={{
+                        textAlign: 'center',
+                        fontSize: 20,
+                        fontFamily: 'Avenir Next',
+                        fontWeight: 'bold',
+                        color: '#aba491',
+                    }}>Loading...</Text>
             }
         </ScrollView>
     </>

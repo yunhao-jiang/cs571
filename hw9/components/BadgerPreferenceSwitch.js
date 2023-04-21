@@ -16,9 +16,9 @@ function BadgerPreferenceSwitch(props) {
         `Toggle on to show content related to ${props.prefName}!`)
     );
 
-    return <BadgerCard onPress={showHint} style={{ marginTop: 8, marginLeft: 8, marginRight: 8 }}>
+    return <BadgerCard onPress={showHint}>
         <View style={{flexDirection: 'row'}}>
-            <Text style={{marginTop: 6}}>{props.prefName.toUpperCase()}</Text>
+            <Text style={{marginTop: 7}}>{props.prefName.toUpperCase()}</Text>
             <Switch
                 trackColor={{true: 'darksalmon', false: 'lightgrey'}}
                 thumbColor={isOn ? '#c5050c' : 'grey'}

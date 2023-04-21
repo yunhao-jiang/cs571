@@ -1,10 +1,12 @@
-import React, {useEffect, useState} from "react";
-import {Image, SafeAreaView, ScrollView, Text, View} from "react-native";
+import React, {useContext, useEffect, useState} from "react";
+import {Image, SafeAreaView, ScrollView, Text} from "react-native";
 import BadgerNewsItemCard from "../BadgerNewsItemCard";
+import BadgerPreferencesContext from "../../contexts/BadgerPreferencesContext";
 
 function BadgerNewsScreen(props) {
     const [articles, setArticles] = useState({});
     const [loaded, setLoaded] = useState(false)
+    const [prefs, setPrefs] = useContext(BadgerPreferencesContext)
 
     useEffect(() => {
         fetch("https://www.cs571.org/s23/hw9/api/news/articles", {
@@ -15,8 +17,18 @@ function BadgerNewsScreen(props) {
         }).then(res => res.json()).then(data => {
             setArticles(data)
             setLoaded(true)
+            setPrefs(data.reduce((acc, article) => {
+                let tagListToAdd = {}
+                for (const tag of article.tags) {
+                    if (!acc[tag]) {
+                        tagListToAdd[tag] = true
+                    }
+                }
+                return {...acc, ...tagListToAdd}
+            }, {}))
         })
     }, [])
+
     return <>
         <SafeAreaView backgroundColor='white' style={{flexDirection: 'row'}}>
             <Image
@@ -32,9 +44,16 @@ function BadgerNewsScreen(props) {
         </SafeAreaView>
         <ScrollView style={{backgroundColor: 'gainsboro', paddingTop: 7}}>
             {
-                loaded ? articles.map((article) => {
-                    return <BadgerNewsItemCard key={article.id} {...article}/>
-                }) : <Text>Loading...</Text>
+                loaded ? articles.filter((article) => {
+                            for (const tag of article.tags) {
+                                if (!prefs[tag]) {
+                                    return false
+                                }
+                            }
+                            return true
+                        }
+                    ).map((article) => <BadgerNewsItemCard key={article.id} {...article}/>) :
+                    <Text>Loading...</Text>
             }
         </ScrollView>
     </>

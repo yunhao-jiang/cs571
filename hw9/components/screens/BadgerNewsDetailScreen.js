@@ -15,7 +15,6 @@ function BadgerNewsDetailScreen(props) {
         }).then(res => res.json()).then(data => {
             setArticle(data)
             setLoaded(true)
-            console.log(data)
         })
     }, [])
     return <>

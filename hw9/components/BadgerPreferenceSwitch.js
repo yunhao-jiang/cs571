@@ -17,15 +17,14 @@ function BadgerPreferenceSwitch(props) {
     );
 
     return <BadgerCard onPress={showHint} style={{ marginTop: 8, marginLeft: 8, marginRight: 8 }}>
-        <View style={{ alignItems: 'center', justifyContent: 'center', color:'red' }}>
-            <Text>{props.prefName}</Text>
-        </View>
-        <View style={{ alignItems: 'center', justifyContent: 'center' }}>
+        <View style={{flexDirection: 'row'}}>
+            <Text style={{marginTop: 6}}>{props.prefName.toUpperCase()}</Text>
             <Switch
                 trackColor={{true: 'darksalmon', false: 'lightgrey'}}
-                thumbColor={isOn ? 'crimson' : 'grey'}
+                thumbColor={isOn ? '#c5050c' : 'grey'}
                 onValueChange={toggle}
                 value={isOn}
+                style={{justifyContent: 'right', marginLeft: 'auto'}}
             />
         </View>
     </BadgerCard>
